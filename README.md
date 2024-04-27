@@ -1,1 +1,1 @@
-# django_project
+# django_project VolodymyrRiz
