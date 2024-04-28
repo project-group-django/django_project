@@ -1,12 +1,12 @@
 from django import forms
-from notes.models import Note, Tag  # Assuming your Note and Tag models are in the same app
+from .models import Note, Tag  # Assuming your Note and Tag models are in the same app
 
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
-        fields = ['name']  # Assuming 'name' is the field for tag names in your Tag model
+        fields = ['tags']  # Assuming 'tag' is the field for tag names in your Tag model
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'tags': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class NoteForm(forms.ModelForm):

@@ -21,6 +21,12 @@ def main(request, page=1):
 
     return render(request, 'notes/index.html', context={'notes': notes})
 
+def notes_view(request):
+    db = get_mongodb()
+    notes = db.notes.find()
+
+    return render(request, 'notes/index.html', context={'notes': notes})    
+
 @login_required
 def tags(request):
     if request.method == 'POST':

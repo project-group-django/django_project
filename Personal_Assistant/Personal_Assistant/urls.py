@@ -15,14 +15,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+# Personal_Assistant/urls.py
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.contrib.auth import views as auth_views
+from Notes import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls), 
-   # path("", include('Personal_Assistant.urls')),    
-    #path('notes/', include('Notes.urls')),
-    #path('users/', include('users.urls')),
-    ] 
+    path('admin/', admin.site.urls),
+    path('notes/', views.notes_view, name='notes'),  # Assuming you have a view named notes_view
+    # ... other URL patterns
+]
+
+
+# from django.contrib import admin
+# from django.urls import path, include
+# from django.contrib.auth import views as auth_views
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls), 
+#    # path("", include('Personal_Assistant.urls')),    
+#     #path('notes/', include('Notes.urls')),
+#     #path('users/', include('users.urls')),
+#     ] 
 
