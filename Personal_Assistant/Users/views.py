@@ -13,13 +13,13 @@ from django.urls import reverse_lazy
 
 def signupuser(request):
     if request.user.is_authenticated:
-        return redirect(to='News:root')
+        return redirect(to='News:main')
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(to='News:root')
+            return redirect(to='News:main')
         else:
             return render(request, 'users/signup.html', context={"form": form})
 
@@ -27,7 +27,7 @@ def signupuser(request):
 
 def loginuser(request):
     if request.user.is_authenticated:
-       return redirect(to='News:root')
+       return redirect(to='News:main')
 
     if request.method == 'POST':
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
@@ -36,14 +36,14 @@ def loginuser(request):
             return redirect(to='/users/login')
 
         login(request, user)
-        return redirect(to='News:root')
+        return redirect(to='News:main')
 
     return render(request, 'users/login.html', context={"form": LoginForm()})
 
 @login_required
 def logoutuser(request):
     logout(request)
-    return redirect(to='News:root')
+    return redirect(to='News:main')
 
 
 @login_required

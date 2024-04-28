@@ -4,7 +4,7 @@ from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfir
 
 
 
-app_name = 'Users'
+app_name = 'users'
 
 urlpatterns = [
     path('signup/', views.signupuser, name='signup'),
