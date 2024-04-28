@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Users',
+    'News',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +130,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
+
+Path(MEDIA_ROOT).mkdir(exist_ok=True, parents=True)
+
+
+load_dotenv()
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.meta.ua'
+EMAIL_PORT = 465
+EMAIL_STARTTLS = False
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = os.getenv("MAIL_USERNAME", "youruser@meta.ua")
+EMAIL_HOST_PASSWORD = os.getenv("MAIL_PASSWORD", "yourpassword")
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
