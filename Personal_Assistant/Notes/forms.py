@@ -1,5 +1,5 @@
 from django import forms
-from .models import Note, Tag  # Assuming your Note and Tag models are in the same app
+from notes.models import Note, Tag  # Assuming your Note and Tag models are in the same app
 
 class TagForm(forms.ModelForm):
     class Meta:
