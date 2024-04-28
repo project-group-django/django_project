@@ -227,23 +227,15 @@
           #s-5:checked ~ .js-slider .js-slider_indicator .indi-5:after {
             transform: translate3d(-50%, -50%, 0) scale(2.5);
           }
-
-
-        
-        
     </style>
-</head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Project</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="registration-buttons">
-        <a href="login.html"><img src="user_ico.png" alt="Image" style="width: 50px; height: 50px;"></a>
+      <a href="/users/signup" class="btn btn-primary">SignUp</a>
+      <a href="/users/login" class="btn btn-primary">Login</a>
+      <a href="/users/logout" class="btn btn-primary" title='Username: "{{ user }}"'>Logout</a>
+      <a href="/users/profile" class="btn btn-primary" title='Username: "{{ user }}"'>Profile</a>
+        {% comment %} <a href="login.html"><img src="user_ico.png" alt="Image" style="width: 50px; height: 50px;"></a> {% endcomment %}
     </div>
 
     <h1>Проект з використанням Django</h1>
@@ -256,6 +248,10 @@
         <button>Контакти</button>
         <button>Новини</button>
     </div>
+
+
+      {% block  content %}  {% endblock %}
+
 
     <h3>Проект Підготували</h3>
     <input type="radio" id="s-1" name="slider-control" checked="checked">
@@ -337,8 +333,11 @@
         <div class="js-slider-indi indi-4"></div>
         <div class="js-slider-indi indi-5"></div>
     </div>
+
     </div>
         
+
+
 
 </body>
 </html>
