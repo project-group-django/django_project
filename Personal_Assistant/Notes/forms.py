@@ -25,6 +25,7 @@ class NoteForm(forms.ModelForm):
         tags_str = self.cleaned_data['tags']
         tags = [tag.strip() for tag in tags_str.split(',') if tag.strip()]
         return tags
+    
 
 
 
