@@ -61,18 +61,26 @@
 </head>
 <body>
     <div id="registration-buttons">
-        <a href="login.html"><img src="user_ico.png" alt="Image" style="width: 50px; height: 50px;"></a>
-    </div>
+        <button onclick="location.href='/users/signup'" class="btn btn-primary">SignUp</button>
+        <button onclick="location.href='/users/login'" class="btn btn-primary">Login</button>
+        <button onclick="location.href='/users/logout'" class="btn btn-primary" title='Username: "{{ user }}"'>Logout</button>
+        <button onclick="location.href='/users/profile'" class="btn btn-primary" title='Username: "{{ user }}"'>Profile</button>
+        
+        
+      </div>
 
-    <h1>Проект з використанням Django</h1>
-    <h2>Персональний помічник</h2>
+    <h1>Персональний помічник</h1>
+    <h2>Нотатки</h2>
     
     <div id="centered-buttons">
         <!-- Для зареєстрованих користувачів -->
         <button>Нотатки</button>
-        <button>Файловий Менеджер</button>
-        <button>Контакти</button>
-        <button>Новини</button>
+        <button>Додати нотатку</button>
+        <button>Змінити нотатку</button>
+        <button>Видалити нотатку</button>
+        <button>Додати тег</button>
+        <button>Видалити тег</button>
+        <button>Знайти нотатку</button>
     </div>
 
 
