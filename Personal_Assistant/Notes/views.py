@@ -9,12 +9,29 @@ from .models import Tag, Note
 
 import json
 from bson.objectid import ObjectId
+# from pymongo import MongoClient
+# from pymongo.server_api import ServerApi
+
+
+# client = MongoClient('mongodb://localhost:27017') 
+# db = client.hw
+#-----------------------------------------
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from pymongo import MongoClient
-from pymongo.server_api import ServerApi
 
+# Define a function to get the MongoDB client
+# def get_mongodb():
+#     client = MongoClient('mongodb://localhost:27017/')
+#     return client['postgres']  # Replace 'your_database_name' with your actual database name
 
-client = MongoClient('mongodb://localhost:27017') 
-db = client.hw
+# #@login_required
+# def notes_view(request):
+#     db = get_mongodb()
+#     notes = db.notes_note.find()
+#     return render(request, 'notes/note.html', context={'notes': list(notes)})
+#----------------------------------------
 
 def main(request, page=1):
     # db = get_mongodb()
@@ -23,11 +40,10 @@ def main(request, page=1):
 
     return render(request, 'notes/note.html', context={'notes': notes})
 
+
 def notes_view(request):
     db = get_mongodb()
-    notes = db.notes_note.find()
-    pass
-
+    notes = db.notes_note.find()    
     return render(request, 'notes/note.html', context={'notes': notes})    
 
 @login_required
