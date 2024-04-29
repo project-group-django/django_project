@@ -42,9 +42,9 @@ def main(request, page=1):
 
 
 def notes_view(request):
-    db = get_mongodb()
-    notes = db.notes_note.find()    
-    return render(request, 'notes/note.html', context={'notes': notes})    
+    # Retrieve the notes for the user
+    notes = Note.objects.filter(note=id)
+    return render(request, 'notes/note.html', {'notes': notes})  
 
 # @login_required
 # def tags(request):
