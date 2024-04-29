@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from django.views import View
-from .forms import TagForm, NoteForm
+from .forms import NoteForm
 from .models import Tag, Note
 
 import json
@@ -46,19 +46,19 @@ def notes_view(request):
     notes = db.notes_note.find()    
     return render(request, 'notes/note.html', context={'notes': notes})    
 
-@login_required
-def tags(request):
-    if request.method == 'POST':
-        form = TagForm(request.POST)
-        if form.is_valid():
-            tag = form.save(commit=False)
+# @login_required
+# def tags(request):
+#     if request.method == 'POST':
+#         form = TagForm(request.POST)
+#         if form.is_valid():
+#             tag = form.save(commit=False)
 
-            tag.save()
-            return redirect(to='notes:main')
-        else:
-            return render(request, 'notes/tag.html', {'form': form})
+#             tag.save()
+#             return redirect(to='notes:main')
+#         else:
+#             return render(request, 'notes/tag.html', {'form': form})
 
-    return render(request, 'notes/tag.html', {'form': TagForm()})
+#     return render(request, 'notes/tag.html', {'form': TagForm()})
 
 @login_required
 def note(request):
@@ -112,5 +112,6 @@ def add_note(request):
             note.save()
             return redirect('notes:note')  # Replace 'notes:note' with your actual URL name for the notes list view
     else:
+        print("kkkkkkkkkkkkkkk")
         form = NoteForm()
     return render(request, 'notes/add_note.html', {'form': form})

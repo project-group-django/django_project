@@ -1,11 +1,11 @@
 <!-- templates/notes/add_note.html -->
-{% extends 'notes/note.html' %}
+{% comment %} {% extends 'notes/note.html' %} {% endcomment %}
 
 {% block content %}
   <h2>Додати нотатку</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
+    {{ form.note }}
+    <button type="submit">Зберегти</button>
   </form>
 {% endblock %}

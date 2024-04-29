@@ -12,7 +12,6 @@ urlpatterns = [
     # ... other URL patterns ...
     #path('notes/', include('Notes.urls')),
     path('', views.notes_view, name='notes'),  # Assuming you have a view named notes_view
-    
     path('add_note/', views.add_note, name='add_note'),
     # ... other URL patterns ...
 ]

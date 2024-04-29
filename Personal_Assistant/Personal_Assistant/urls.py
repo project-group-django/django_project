@@ -25,7 +25,7 @@ app_name = 'Personal_Assistant'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('notes/', include('Notes.urls')),
+    path('notes/', include('Notes.urls', namespace='notes')),
     
     # ... other URL patterns
 ]

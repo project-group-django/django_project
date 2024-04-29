@@ -1,30 +1,60 @@
 from django import forms
-from .models import Note, Tag  # Assuming your Note and Tag models are in the same app
-
-class TagForm(forms.ModelForm):
-    class Meta:
-        model = Tag
-        fields = ['tags']  # Assuming 'tag' is the field for tag names in your Tag model
-        widgets = {
-            'tags': forms.TextInput(attrs={'class': 'form-control'}),
-        }
+from .models import Note, Tag
 
 class NoteForm(forms.ModelForm):
+    tags = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    print('jbnnnnnnnnnnnmmmmiiiiii')
     class Meta:
         model = Note
-        fields = ['note']  # Assuming 'note' is the field for note content in your Note model
+        fields = ['note']
         widgets = {
-            'note': forms.TextInput(attrs={'class': 'form-control'}),
+            'note': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['tags'] = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    def clean_tags(self):
+    def save(self, commit=True):
+        note = super().save(commit=False)
+        #note.user = self.user
+        if commit:
+            note.save()
+            self.save_m2m()
+        # Обробка тегів
         tags_str = self.cleaned_data['tags']
         tags = [tag.strip() for tag in tags_str.split(',') if tag.strip()]
-        return tags
+        for tag_name in tags:
+            tag, _ = Tag.objects.get_or_create(name=tag_name)
+            note.tags.add(tag)
+        return note
+
+
+
+
+# from django import forms
+# from .models import Note, Tag  # Assuming your Note and Tag models are in the same app
+
+# class TagForm(forms.ModelForm):
+#     class Meta:
+#         model = Tag
+#         fields = ['tags']  # Assuming 'tag' is the field for tag names in your Tag model
+#         widgets = {
+#             'tags': forms.TextInput(attrs={'class': 'form-control'}),
+#         }
+
+# class NoteForm(forms.ModelForm):
+#     class Meta:
+#         model = Note
+#         fields = ['note']  # Assuming 'note' is the field for note content in your Note model
+#         widgets = {
+#             'note': forms.TextInput(attrs={'class': 'form-control'}),
+#         }
+
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['tags'] = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+#     def clean_tags(self):
+#         tags_str = self.cleaned_data['tags']
+#         tags = [tag.strip() for tag in tags_str.split(',') if tag.strip()]
+#         return tags
     
 
 
