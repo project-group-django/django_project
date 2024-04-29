@@ -1,5 +1,5 @@
 # Create your views here.
-
+from .utils import get_mongodb 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
@@ -12,20 +12,23 @@ from bson.objectid import ObjectId
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
+
 client = MongoClient('mongodb://localhost:27017') 
 db = client.hw
 
 def main(request, page=1):
-    db = get_mongodb()
-    notes = db.notes.find()
+    # db = get_mongodb()
+    # notes = db.notes.find()
+    pass
 
-    return render(request, 'notes/index.html', context={'notes': notes})
+    return render(request, 'notes/note.html', context={'notes': notes})
 
 def notes_view(request):
     db = get_mongodb()
-    notes = db.notes.find()
+    notes = db.notes_note.find()
+    pass
 
-    return render(request, 'notes/index.html', context={'notes': notes})    
+    return render(request, 'notes/note.html', context={'notes': notes})    
 
 @login_required
 def tags(request):

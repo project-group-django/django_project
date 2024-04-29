@@ -1,28 +1,88 @@
-{% extends 'notes/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #edf5e1;
+            margin: 0;
+            padding: 0;
+            background-color: #31325e;
+            position: relative; 
+        }
+        
+        h1,h2,h3 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f64c72;
+            color: #edf5e1;
+            transition: background-color 0.3s ease; 
+        }
+        
+        button:hover {
+            background-color: #443d67;
+        }
+        
+        #registration-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        #centered-buttons {
+            text-align: center;
+            margin-top: 50px; 
+        }
+        
 
-{% block content %}
-<div class="container mt-3">
-    <h2>Add Note</h2>
-    <form method="post">
-        {% csrf_token %}
-        {% if form.non_field_errors %}
-        <div class="alert alert-danger" role="alert">
-            {{ form.non_field_errors }}
-        </div>
-        {% endif %}
-        <div class="mb-3">
-            <label for="{{ form.note.id_for_label }}" class="form-label">Note</label>
-            {{ form.note }}
-            <span class="text-danger">{{ form.note.errors }}</span>
-        </div>
-        <div class="mb-3">
-            <label for="{{ form.tags.id_for_label }}" class="form-label">Tag</label>
-            {{ form.tags }}
-            <span class="text-danger">{{ form.tags.errors }}</span>
-        </div>        
-       
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="cancel" class="btn btn-secondary">Cancel</button>
-    </form>
-</div>
-{% endblock %}
+
+        
+        
+    </style>
+</head>
+
+<body>
+    <div id="registration-buttons">
+        <button onclick="location.href='/users/signup'" class="btn btn-primary">SignUp</button>
+        <button onclick="location.href='/users/login'" class="btn btn-primary">Login</button>
+        <button onclick="location.href='/users/logout'" class="btn btn-primary" title='Username: "{{ user }}"'>Logout</button>
+        <button onclick="location.href='/users/profile'" class="btn btn-primary" title='Username: "{{ user }}"'>Profile</button>
+        
+        
+      </div>
+
+    <h1>Персональний помічник</h1>
+    <h2>Нотатки</h2>
+    
+    <div id="centered-buttons">
+        <!-- Для зареєстрованих користувачів -->
+        <button>Нотатки</button>
+        <button>Додати нотатку</button>
+        <button>Змінити нотатку</button>
+        <button>Видалити нотатку</button>
+        <button>Додати тег</button>
+        <button>Видалити тег</button>
+        <button>Знайти нотатку</button>
+    </div>
+
+
+    </div>
+    </div>
+        
+
+</body>
+</html>
+
+</html>
+</html>
