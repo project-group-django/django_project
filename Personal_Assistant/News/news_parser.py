@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 def parse_news():
-    url = 'https://example.com/news'    
+    url = 'https://www.unian.net'    
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     
