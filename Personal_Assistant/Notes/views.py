@@ -9,17 +9,17 @@ from .models import Tag, Note
 
 import json
 from bson.objectid import ObjectId
-# from pymongo import MongoClient
-# from pymongo.server_api import ServerApi
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi
 
 
 # client = MongoClient('mongodb://localhost:27017') 
 # db = client.hw
 #-----------------------------------------
 
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from pymongo import MongoClient
+# from django.shortcuts import render
+# from django.contrib.auth.decorators import login_required
+# from pymongo import MongoClient
 
 # Define a function to get the MongoDB client
 # def get_mongodb():
@@ -101,3 +101,16 @@ def set_done(request, note_id):
 def delete_note(request, note_id):
     Note.objects.get(pk=note_id).delete()
     return redirect(to='notes:main')
+
+#@login_required
+def add_note(request):
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.user = request.user  # Assuming you have a user field in your Note model
+            note.save()
+            return redirect('notes:note')  # Replace 'notes:note' with your actual URL name for the notes list view
+    else:
+        form = NoteForm()
+    return render(request, 'notes/add_note.html', {'form': form})

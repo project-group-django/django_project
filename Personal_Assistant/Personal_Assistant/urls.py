@@ -17,13 +17,16 @@ Including another URLconf
 
 # Personal_Assistant/urls.py
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from Notes import views
 
+app_name = 'Personal_Assistant'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('notes/', views.notes_view, name='notes'),  # Assuming you have a view named notes_view
+    path('notes/', include('Notes.urls')),
+    
     # ... other URL patterns
 ]
 
