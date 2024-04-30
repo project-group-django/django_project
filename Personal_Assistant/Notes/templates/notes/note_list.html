@@ -3,15 +3,16 @@
   <form method="get">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="button" onclick="getNoteDetail()" class="btn btn-primary">Переглянути</button>
+    <button type="submit" class="btn btn-primary">Переглянути</button>
   </form>
 
-  <script>
-    function getNoteDetail() {
-      // Зробіть запит на сервер, щоб отримати note_id
-      // Після отримання note_id зробіть перехід на сторінку note_detail
-      var noteId = '1'; // Замініть на справжній запит до сервера
-      window.location.href = '/notes/note_detail/' + noteId + '/';
-    }
-  </script>
+  <h2>Нотатки</h2>
+  {% for note in notes %}
+    <div class="note">
+      <p>{{ note.note }}</p>
+      <p>Теги: {{ note.tags.all|join:", " }}</p>
+    </div>
+  {% empty %}
+    <p>Нотатки з вибраними тегами не знайдено.</p>
+  {% endfor %}
 {% endblock %}

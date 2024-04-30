@@ -14,26 +14,6 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
 
-# client = MongoClient('mongodb://localhost:27017') 
-# db = client.hw
-#-----------------------------------------
-
-# from django.shortcuts import render
-# from django.contrib.auth.decorators import login_required
-# from pymongo import MongoClient
-
-# Define a function to get the MongoDB client
-# def get_mongodb():
-#     client = MongoClient('mongodb://localhost:27017/')
-#     return client['postgres']  # Replace 'your_database_name' with your actual database name
-
-# #@login_required
-# def notes_view(request):
-#     db = get_mongodb()
-#     notes = db.notes_note.find()
-#     return render(request, 'notes/note.html', context={'notes': list(notes)})
-#----------------------------------------
-
 def main(request, page=1):
     # db = get_mongodb()
     notes = db.notes.find()
@@ -153,11 +133,12 @@ def filter_notes_by_tags(request):
 #@login_required
 def note_list(request):
     form = YourTagFilterForm(request.GET)
-    notes = Note.objects.all()
+    notes = Note.objects.all()  # Отримуємо всі нотатки
 
     if form.is_valid():
         tags = form.cleaned_data['tags']
         if tags:
+            # Фільтруємо нотатки за тегами
             notes = notes.filter(tags__in=tags)
 
     context = {

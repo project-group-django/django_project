@@ -11,7 +11,7 @@ class YourTagFilterForm(forms.Form):
 
 class NoteForm(forms.ModelForm):
     tags = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    print('jbnnnnnnnnnnnmmmmiiiiii')
+    
     class Meta:
         model = Note
         fields = ['note']

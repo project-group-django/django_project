@@ -7,7 +7,7 @@ from . import views
 from django.urls import path, include
 from .views import note_detail 
 
-app_name = 'Notes'
+app_name = 'notes'
 
 urlpatterns = [
     # ... other URL patterns ...
@@ -16,7 +16,7 @@ urlpatterns = [
     path('add_note/', views.add_note, name='add_note'),
     path('note_list/', views.note_list, name='note_list'),
     path('note_detail/', views.note_detail, name='note_detail'),
-    path('notes/note_detail/<int:note_id>/', note_detail, name='note_detail'),
+    
     # ... other URL patterns ...
 ]
 
