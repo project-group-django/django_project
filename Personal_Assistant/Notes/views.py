@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View
 from .forms import NoteForm
 from .models import Tag, Note
+from .forms import YourTagFilterForm  # Replace with the actual name of your form class
 
 import json
 from bson.objectid import ObjectId
@@ -87,10 +88,24 @@ def note(request):
     # #return render(request, 'quotes/quote.html', {"tags": tags, 'form': QuoteForm()})
     #     return render(request, 'quotes/quote.html', {'form': QuoteForm()})
 
-@login_required
-def detail(request, note_id):
-    note = get_object_or_404(Note, pk=note_id)
-    return render(request, 'notes/detail.html', {"note": note})
+#@login_required
+def note_detail(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    form = YourTagFilterForm(request.GET)
+
+    if form.is_valid():
+        tags = form.cleaned_data['tags']
+        if tags:
+            # Фільтруємо нотатки за тегами
+            notes = Note.objects.filter(tags__in=tags)
+            # Вибираємо одну з відповідних нотаток
+            note = notes.filter(id=note_id).first()
+
+    context = {
+        'form': form,
+        'note': note,
+    }
+    return render(request, 'notes/note_detail.html', context)
 
 @login_required
 def set_done(request, note_id):
@@ -120,3 +135,33 @@ def add_note(request):
     else:
         form = NoteForm()
     return render(request, 'notes/add_note.html', {'form': form})
+
+
+
+#@login_required
+def filter_notes_by_tags(request):
+    if request.method == 'GET':
+        form = YourTagFilterForm(request.GET)
+        if form.is_valid():
+            # Process the form data here
+            pass
+    else:
+        form = YourTagFilterForm()
+    return render(request, 'notes/filter_notes_by_tags.html', {'form': form})
+
+
+#@login_required
+def note_list(request):
+    form = YourTagFilterForm(request.GET)
+    notes = Note.objects.all()
+
+    if form.is_valid():
+        tags = form.cleaned_data['tags']
+        if tags:
+            notes = notes.filter(tags__in=tags)
+
+    context = {
+        'form': form,
+        'notes': notes,
+    }
+    return render(request, 'notes/note_list.html', context)

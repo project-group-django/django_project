@@ -5,6 +5,7 @@ from . import views
 # #from .views import RegisterView
 
 from django.urls import path, include
+from .views import note_detail 
 
 app_name = 'Notes'
 
@@ -13,6 +14,9 @@ urlpatterns = [
     #path('notes/', include('Notes.urls')),
     path('', views.notes_view, name='notes'),  # Assuming you have a view named notes_view
     path('add_note/', views.add_note, name='add_note'),
+    path('note_list/', views.note_list, name='note_list'),
+    path('note_detail/', views.note_detail, name='note_detail'),
+    path('notes/note_detail/<int:note_id>/', note_detail, name='note_detail'),
     # ... other URL patterns ...
 ]
 

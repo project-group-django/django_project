@@ -1,0 +1,16 @@
+{% comment %} {% extends 'base_generic.html' %} {% endcomment %}
+
+{% block content %}
+  <h2>Note Details</h2>
+
+  <div class="note-detail">
+    <p>{{ note.note }}</p>
+    <p>Tags: {{ note.tags.all|join:", " }}</p>
+  </div>
+
+  <h3>Filter Notes by Tags</h3>
+  <form method="get">
+    {{ form.as_p }}
+    <button type="submit">Filter</button>
+  </form>
+{% endblock %}

@@ -1,6 +1,14 @@
 from django import forms
 from . models import Note, Tag
 
+
+class YourTagFilterForm(forms.Form):
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+
 class NoteForm(forms.ModelForm):
     tags = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     print('jbnnnnnnnnnnnmmmmiiiiii')

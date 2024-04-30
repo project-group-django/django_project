@@ -1,0 +1,17 @@
+{% block content %}
+  <h2>Знайти нотатку за тегами</h2>
+  <form method="get">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="button" onclick="getNoteDetail()" class="btn btn-primary">Переглянути</button>
+  </form>
+
+  <script>
+    function getNoteDetail() {
+      // Зробіть запит на сервер, щоб отримати note_id
+      // Після отримання note_id зробіть перехід на сторінку note_detail
+      var noteId = '1'; // Замініть на справжній запит до сервера
+      window.location.href = '/notes/note_detail/' + noteId + '/';
+    }
+  </script>
+{% endblock %}
