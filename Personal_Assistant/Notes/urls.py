@@ -18,6 +18,7 @@ urlpatterns = [
     path('note_detail/', views.note_detail, name='note_detail'),
     path('notes/note/', views.notes_view, name='note'),
     path('delete_note/<int:note_id>/', views.delete_note, name='delete_note'),
+    path('edit_note/<int:note_id>/', views.edit_note, name='edit_note'),
     
     # ... other URL patterns ...
 ]

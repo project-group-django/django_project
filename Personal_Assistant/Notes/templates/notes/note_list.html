@@ -12,6 +12,7 @@
       <p>{{ note.note }}</p>
       <p>Теги: {{ note.tags.all|join:", " }}</p>
       <a href="{% url 'notes:delete_note' note.id %}" class="btn btn-danger">Видалити</a>
+      <a href="{% url 'notes:edit_note' note.id %}" class="btn btn-primary">Змінити</a>
     </div>
   {% empty %}
     <p>Нотатки з вибраними тегами не знайдено.</p>

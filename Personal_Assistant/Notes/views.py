@@ -154,3 +154,15 @@ def delete_note(request, note_id):
         note.delete()
         return redirect('notes:note_list')
     return render(request, 'notes/delete_note.html', {'note': note})
+
+#@login_required
+def edit_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    if request.method == 'POST':
+        form = NoteForm(request.POST, instance=note)
+        if form.is_valid():
+            form.save()
+            return redirect('notes:note_list')
+    else:
+        form = NoteForm(instance=note)
+    return render(request, 'notes/edit_note.html', {'form': form})
