@@ -15,4 +15,12 @@
   {% empty %}
     <p>Нотатки з вибраними тегами не знайдено.</p>
   {% endfor %}
+  <!-- Кнопка "Повернутися" -->
+  <button onclick="goBack()" class="btn btn-secondary">Повернутися</button>
+
+  <script>
+    function goBack() {
+      window.location.href = '{% url 'notes:note' %}';
+    }
+  </script>
 {% endblock %}

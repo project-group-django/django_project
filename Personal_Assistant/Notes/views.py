@@ -56,7 +56,7 @@ def note(request):
             'tags': note_data['tags'],          
         })
         # No need to call save on the collection, as insert_one already saves the document
-        return redirect(to='notes:main')
+        return redirect(to='notes:note')
     else:
         print(form.errors)
     # If the form is not valid, you might want to handle the error or display the form again
