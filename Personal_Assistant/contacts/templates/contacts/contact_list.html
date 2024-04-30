@@ -1,0 +1,19 @@
+{% extends 'Newsapp/index.html' %}
+
+{% block content %}
+  <h2>Contacts</h2>
+  <a href="{% url 'contacts:contact_create' %}">Add Contact</a>
+  <a href="{% url 'contacts:contact_search' %}">Search Contacts</a>
+  <a href="{% url 'contacts:upcoming_birthdays' %}">Upcoming Birthdays</a>
+  <ul>
+    {% for contact in contacts %}
+      <li>
+        {{ contact.name }} - {{ contact.phone }} - {{ contact.email }} - {{ contact.birthday }}
+        <a href="{% url 'contacts:contact_update' contact.pk %}">Edit</a>
+        <a href="{% url 'contacts:contact_delete' contact.pk %}">Delete</a>
+      </li>
+    {% empty %}
+      <li>No contacts yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
