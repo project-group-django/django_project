@@ -11,10 +11,12 @@
     <div class="note">
       <p>{{ note.note }}</p>
       <p>Теги: {{ note.tags.all|join:", " }}</p>
+      <a href="{% url 'notes:delete_note' note.id %}" class="btn btn-danger">Видалити</a>
     </div>
   {% empty %}
     <p>Нотатки з вибраними тегами не знайдено.</p>
   {% endfor %}
+
   <!-- Кнопка "Повернутися" -->
   <button onclick="goBack()" class="btn btn-secondary">Повернутися</button>
 

@@ -146,3 +146,11 @@ def note_list(request):
         'notes': notes,
     }
     return render(request, 'notes/note_list.html', context)
+
+#@login_required
+def delete_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    if request.method == 'POST':
+        note.delete()
+        return redirect('notes:note_list')
+    return render(request, 'notes/delete_note.html', {'note': note})
