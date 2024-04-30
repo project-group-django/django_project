@@ -1,5 +1,5 @@
 from django import forms
-from .models import Note, Tag
+from . models import Note, Tag
 
 class NoteForm(forms.ModelForm):
     tags = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))

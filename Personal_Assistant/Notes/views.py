@@ -35,7 +35,7 @@ from pymongo.server_api import ServerApi
 
 def main(request, page=1):
     # db = get_mongodb()
-    # notes = db.notes.find()
+    notes = db.notes.find()
     pass
 
     return render(request, 'notes/note.html', context={'notes': notes})
@@ -107,11 +107,16 @@ def add_note(request):
     if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
-            note = form.save(commit=False)
-            note.user = request.user  # Assuming you have a user field in your Note model
+            #note = form.save(commit=False)
+            note = Note(note='ggg   ggdg  e dfd d d d')
             note.save()
-            return redirect('notes:note')  # Replace 'notes:note' with your actual URL name for the notes list view
+            #note.save()  # Save the note instance first
+            tags = form.cleaned_data['tags'].split(',')
+            for tag_name in tags:
+                tag, _ = Tag.objects.get_or_create(name=tag_name.strip())  # Get or create the tag
+                note.tags.add(tag)  # Add the tag to the note
+            #return redirect(to='notes:note')
+            return render(request, 'notes/note.html', {'form': form})
     else:
-        print("kkkkkkkkkkkkkkk")
         form = NoteForm()
     return render(request, 'notes/add_note.html', {'form': form})
