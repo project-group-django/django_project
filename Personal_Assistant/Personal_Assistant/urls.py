@@ -20,25 +20,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from Notes import views
+from django.views.generic.base import RedirectView
 
 app_name = 'Personal_Assistant'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('notes/', include('Notes.urls', namespace='Notes')),  # Include the Notes app URLconf
-    
+    path('', RedirectView.as_view(url='/notes/', permanent=True), name='index'),
     # ... other URL patterns
 ]
 
-
-# from django.contrib import admin
-# from django.urls import path, include
-# from django.contrib.auth import views as auth_views
-
-# urlpatterns = [
-#     path('admin/', admin.site.urls), 
-#    # path("", include('Personal_Assistant.urls')),    
-#     #path('notes/', include('Notes.urls')),
-#     #path('users/', include('users.urls')),
-#     ] 
 

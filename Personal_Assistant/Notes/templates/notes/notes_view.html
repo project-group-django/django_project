@@ -1,8 +1,0 @@
-{% block content %}
-  <h2>Нотатки з тегами</h2>
-  <form method="get">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Переглянути</button>
-  </form>
-{% endblock %}
