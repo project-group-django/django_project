@@ -1,41 +1,41 @@
-{% extends "Newsapp/index.html" %}
+{% extends "Newsapp/base.html" %}
 
 {% block content %}
 
 <div>
-    <h2>Sign Up</h2>
+    <h2>Регестрація</h2>
 </div>
 
 <form method="post" action="{% url 'users:signup' %}">
     {% csrf_token %}
     <div>
-        <label> Username:
+        <label> Ім'я користувача:
             {{ form.username }}
         </label>
         <span>{{ form.errors.username }}</span>
     </div>
     <br>
     <div>
-        <label> Email:
+        <label> Пошта:
             {{ form.email }}
         </label>
         <span>{{ form.errors.email }}</span>
     </div>
     <div>
-        <label> Password:
+        <label> Пароль:
             {{ form.password1 }}
         </label>
         <span>{{ form.errors.password1 }}</span>
     </div>
     <div>
-        <label> Password confirmation:
+        <label> Підтвердження паролю:
             {{ form.password2 }}
         </label>
         <span>{{ form.errors.password2 }}</span>
     </div>
     <div class="grid">
-        <button type="submit">Submit</button>
-        <button type="reset" class="secondary">Reset</button>
+        <button type="submit">Підтвердити</button>
+        <button type="reset" class="secondary">Cкинути</button>
     </div>
 </form>
 

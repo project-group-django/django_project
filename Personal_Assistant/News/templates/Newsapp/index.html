@@ -227,31 +227,42 @@
           #s-5:checked ~ .js-slider .js-slider_indicator .indi-5:after {
             transform: translate3d(-50%, -50%, 0) scale(2.5);
           }
+
+
+        
+        
     </style>
 </head>
+
 <body>
-    <div id="registration-buttons">
-      <a href="/users/signup" class="btn btn-primary">SignUp</a>
-      <a href="/users/login" class="btn btn-primary">Login</a>
-      <a href="/users/logout" class="btn btn-primary" title='Username: "{{ user }}"'>Logout</a>
-      <a href="/users/profile" class="btn btn-primary" title='Username: "{{ user }}"'>Profile</a>
-        {% comment %} <a href="login.html"><img src="user_ico.png" alt="Image" style="width: 50px; height: 50px;"></a> {% endcomment %}
-    </div>
+  <div id="registration-buttons">
+      {% if user.is_authenticated %}
+      <a href="{% url 'users:logout' %}" class="btn btn-primary" title="Username: {{ user }}"><button>Вихід</button></a>
+      <a href="{% url 'users:profile' %}" class="btn btn-primary" title="Username: {{ user }}"><button>Профіль</button></a>
+  {% else %}
+      <a href="{% url 'users:signup' %}" class="btn btn-primary"><button>Регестрація</button></a>
+      <a href="{% url 'users:login' %}" class="btn btn-primary"><button>Вхід</button></a>
+  {% endif %}
+
+  </div>
 
     <h1>Проект з використанням Django</h1>
     <h2>Персональний помічник</h2>
     
     <div id="centered-buttons">
-        <!-- Для зареєстрованих користувачів -->
+      {% if user.is_authenticated %}
         <button>Нотатки</button>
         <button>Файловий Менеджер</button>
         <button>Контакти</button>
-        <button>Новини</button>
+        <a href="{% url 'news' %}"><button>Новини</button></a>
+        <a href="{% url 'weather' %}"><button>Погода</button></a>
+        <a href="{% url 'money' %}"><button>Курс валют</button></a>
+      {% else %}
+        <a href="{% url 'news' %}"><button>Новини</button></a>
+        <a href="{% url 'weather' %}"><button>Погода</button></a>
+        <a href="{% url 'money' %}"><button>Курс валют</button></a>
+      {% endif %}
     </div>
-
-
-      {% block  content %}  {% endblock %}
-
 
     <h3>Проект Підготували</h3>
     <input type="radio" id="s-1" name="slider-control" checked="checked">
@@ -333,11 +344,8 @@
         <div class="js-slider-indi indi-4"></div>
         <div class="js-slider-indi indi-5"></div>
     </div>
-
     </div>
         
-
-
 
 </body>
 </html>
