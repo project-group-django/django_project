@@ -3,7 +3,7 @@
   <form method="get">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Переглянути</button>
+    <button type="submit" class="btn btn-primary view-button">Переглянути</button>
   </form>
 
   <h2>Нотатки</h2>
@@ -11,19 +11,52 @@
     <div class="note">
       <p>{{ note.note }}</p>
       <p>Теги: {{ note.tags.all|join:", " }}</p>
-      <a href="{% url 'notes:delete_note' note.id %}" class="btn btn-danger">Видалити</a>
-      <a href="{% url 'notes:edit_note' note.id %}" class="btn btn-primary">Змінити</a>
+      <a href="{% url 'notes:delete_note' note.id %}" class="btn btn-danger delete-button">Видалити</a>
+      <a href="{% url 'notes:edit_note' note.id %}" class="btn btn-primary edit-button">Змінити</a>
     </div>
   {% empty %}
     <p>Нотатки з вибраними тегами не знайдено.</p>
   {% endfor %}
 
   <!-- Кнопка "Повернутися" -->
-  <button onclick="goBack()" class="btn btn-secondary">Повернутися</button>
+  <button onclick="goBack()" class="btn btn-secondary back-button">Повернутися</button>
 
   <script>
     function goBack() {
       window.location.href = '{% url 'notes:note' %}';
     }
   </script>
+
+  <style>
+    .view-button, .delete-button, .edit-button, .back-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #fff; /* Текст кнопки буде білим */
+      margin: 5px; /* Відступ між кнопками */
+      transition: background-color 0.3s ease;
+    }
+
+    .view-button {
+      background-color: #007bff; /* Синій */
+    }
+
+    .delete-button {
+      background-color: #dc3545; /* Червоний */
+    }
+
+    .edit-button {
+      background-color: #ffc107; /* Жовтий */
+    }
+
+    .back-button {
+      background-color: #6c757d; /* Сірий */
+    }
+
+    .view-button:hover, .delete-button:hover, .edit-button:hover, .back-button:hover {
+      opacity: 0.8; /* Зменшення непрозорість кнопки при наведенні миші */
+    }
+  </style>
 {% endblock %}
