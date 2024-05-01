@@ -28,8 +28,7 @@ def add_note(request):
         if form.is_valid():
             #note = form.save(commit=False)
             note = Note(note='ggg   ggdg  e dfd d d d')
-            note.save()
-            #note.save()  # Save the note instance first
+            note.save()           
             tags = form.cleaned_data['tags'].split(',')
             for tag_name in tags:
                 tag, _ = Tag.objects.get_or_create(name=tag_name.strip())  # Get or create the tag
