@@ -7,4 +7,5 @@ app_name = "News"
 urlpatterns = [
     path("", views.main, name="main"),
     path('users/', include('users.urls')),
+    path('contacts/', include('contacts.urls')),
 ]

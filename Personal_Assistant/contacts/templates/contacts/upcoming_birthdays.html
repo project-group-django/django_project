@@ -1,0 +1,19 @@
+{% extends 'Newsapp/index.html' %}
+
+{% block content %}
+  <h1>Upcoming Birthdays</h1>
+  <form method="get">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  {% if upcoming_birthdays %}
+    <h2>Birthdays in the Next {{ days_ahead }} Days</h2>
+    <ul>
+      {% for contact in upcoming_birthdays %}
+        <li>{{ contact.name }} - {{ contact.birthday }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No upcoming birthdays in the next {{ days_ahead }} days.</p>
+  {% endif %}
+{% endblock %}

@@ -29,7 +29,53 @@
             color: #edf5e1;
             transition: background-color 0.3s ease; 
         }
-        
+
+        a.btn {
+          display: inline-block;
+          padding: 10px 20px;
+          font-size: 16px;
+          text-decoration: none;
+          color: #edf5e1;
+          background-color: #f64c72;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+      
+      a.btn:hover {
+          background-color: #443d67;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
+    button.secondary {
+      background-color: #443d67;
+  }
+
+    a {
+      text-decoration: none;
+      color: #f64c72;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+      
+    
         button:hover {
             background-color: #443d67;
         }
@@ -243,9 +289,9 @@
     
     <div id="centered-buttons">
         <!-- Для зареєстрованих користувачів -->
-        <button>Нотатки</button>
+        <a href="/contacts/contacts" class="btn btn-primary">Контакти</a>
         <button>Файловий Менеджер</button>
-        <button>Контакти</button>
+        {% comment %} <button>Контакти</button> {% endcomment %}
         <button>Новини</button>
     </div>
 

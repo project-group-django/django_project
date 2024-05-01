@@ -1,0 +1,16 @@
+{% extends 'Newsapp/index.html' %}
+
+{% block content %}
+  <h2>{% if form.instance.pk %}Update{% else %}Create{% endif %} Contact</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+  {% if form.errors %}
+    <div class="alert alert-danger">
+      <p>There were errors in the form. Please correct them and try again.</p>
+      {{ form.errors }}
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+<!-- contact_search.html -->
+{% extends 'Newsapp/index.html' %}
+
+{% block content %}
+  <h1>Search Contacts</h1>
+  <form method="get">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  {% if query %}
+    <h2>Results for "{{ query }}"</h2>
+    {% if results %}
+      <ul>
+        {% for contact in results %}
+          <li>{{ contact.name }} - {{ contact.phone }} - {{ contact.email }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No contacts found.</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}
