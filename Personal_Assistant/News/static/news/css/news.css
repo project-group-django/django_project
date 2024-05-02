@@ -1,0 +1,114 @@
+body {
+    background: #2c2c2c;
+}
+
+aside {
+    float: left;
+    background: #181818;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+}
+
+aside img {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+aside .logo {
+    font-size: 30px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: 25px;
+}
+
+aside h3 {
+    margin-top: 100px;
+    font-size: 25px;
+}
+
+aside ul {list-style: none}
+aside ul li {
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    transition: transform .6s ease;
+
+}
+aside ul li:hover, aside ul a:hover {
+    color: #eb5959;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+aside .contributors {
+    margin-top: 200px;
+    font-size: 25px;
+}
+
+main h3 {
+    font-size: 30px;
+}
+
+
+main #registration-buttons {
+    position: absolute;
+    right: 10px;
+}
+
+main .btn-primary_1 {
+    background-color: #f2f2f2;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+}
+
+main .btn-primary_2 {
+    background-color: #f2f2f2;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+}
+
+main .project {
+    position: absolute;
+    top: 50px;
+    left: 350px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #f2f2f2;
+}
+main .project_name {
+    position: absolute;
+    top: 100px;
+    left: 350px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #f2f2f2;
+}
+
+main .carousel.slide {
+    position: absolute;
+    top: 200px;
+    left: 680px;
+}
+
+main .carousel-item.active img {
+    width: 550px;
+    height: 550px;
+}
+
+main .django_logo img {
+    width: 150px;
+    /*height: 100px;*/
+    position: absolute;
+    top: 20px;
+    left: 350px;
+}
