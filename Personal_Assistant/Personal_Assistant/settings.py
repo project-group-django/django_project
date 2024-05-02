@@ -58,7 +58,7 @@ ROOT_URLCONF = 'Personal_Assistant.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'News', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

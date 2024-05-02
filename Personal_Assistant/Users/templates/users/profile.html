@@ -1,9 +1,9 @@
-{% extends "Newsapp/index.html" %}
+{% extends "Newsapp/base.html" %}
 
 {% block content %}
 
 <div>
-    <h1>Profile page: {{user.username}}</h1>
+    <h1>Сторінка профілю: {{user.username}}</h1>
     <img src="{{ user.profile.avatar.url }}" alt="avatar of user"/>
 </div>
 
@@ -20,15 +20,15 @@
     <div class="form-row">
         <div class="col-md-5">
             <div class="form-group">
-                <label class="small mb-1">Change Avatar:</label>
+                <label class="small mb-1">Вибрати аватар:</label>
                 {{ profile_form.avatar }}
                 <span>{{ profile_form.errors.avatar }}</span>
             </div>
         </div>
     </div>
     <div class="grid">
-        <button type="submit">Save Changes</button>
-        <button type="reset" class="secondary">Reset</button>
+        <button type="submit">Зберегти зміни</button>
+        <button type="reset" class="secondary">Скинути</button>
     </div>
 
 </form>

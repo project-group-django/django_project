@@ -1,4 +1,4 @@
-{% extends "Newsapp/index.html" %}
+{% extends "Newsapp/base.html" %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@
 </style>
 <div class="rounded-3 bg-light w-50 m-auto">
 <div>
-    <h1>Profile page: {{user.username}}</h1>
+    <h1>Сторінка Профілю: {{user.username}}</h1>
     <img src="{{ user.profile.avatar.url }}" alt="avatar of user"/>
 </div>
 
@@ -37,17 +37,17 @@
     <div class="form-row">
         <div class="col-md-5">
             <div class="form-group">
-                <label class="small mb-1">Change Avatar:</label>
+                <label class="small mb-1">Вибрати аватар:</label>
                 {{ profile_form.avatar }}
                 <span>{{ profile_form.errors.avatar }}</span>
             </div>
         </div>
     </div>
     <div class="grid text-center p-3">
-        <button type="submit"  class="btn btn-primary">Save Changes</button>
-        <button type="reset"  class="btn btn-secondary">Reset</button>
+        <button type="submit"  class="btn btn-primary">Зберегти зміни</button>
+        <button type="reset"  class="btn btn-secondary">Скинути</button>
         <a role="button"  class="btn btn-secondary" href="{% url 'users:delete' %}" 
-        data-target="modal-example" onClick="toggleModal(event)">DELETE USER</a>
+        data-target="modal-example" onClick="toggleModal(event)">Видалити користувача</a>
     </div>
 </form>
 
@@ -59,9 +59,9 @@
             data-target="modal-example"
             onClick="toggleModal(event)">
             </a>
-            <h3>Confirm your action!</h3>
+            <h3>Підтвердіть свою дію!</h3>
             <p>
-            Your action may result in the deletion of records. Are you sure?
+            Після цих дій ваш акаунт буде видалено. Ви згодні з цим?
             </p>
             <footer>
             <a href="#cancel"
@@ -69,19 +69,18 @@
                 class="secondary"
                 data-target="modal-example"
                 onClick="toggleModal(event)">
-                Cancel
+                Відмінити
             </a>
             <a href="#"
                 role="button"
                 data-target=""
                 onClick="onConfiramtion()">
-                Confirm
+                Підтвердити
             </a>
             </footer>
         </article>
 </dialog>
-    <!-- Modal -->
-    <script src="/static/noteapp/js/modal.js"></script>
+
 </div>
 
 {% endblock content %}
