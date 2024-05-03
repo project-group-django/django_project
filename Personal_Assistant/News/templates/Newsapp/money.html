@@ -73,7 +73,7 @@
     <div id="centered-buttons">
         {% if user.is_authenticated %}
         <a href="{% url 'money' %}"><button>Головна сторінка </button></a>
-        <button>Нотатки</button>
+        <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
         <button>Файловий Менеджер</button>
         <button>Контакти</button>
         <a href="{% url 'news' %}"><button>Новини</button></a>

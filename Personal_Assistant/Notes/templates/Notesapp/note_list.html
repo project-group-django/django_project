@@ -1,0 +1,31 @@
+{% extends 'Notesapp/base.html' %}
+{% block content %}
+  <h2>Знайти нотатку за тегами</h2>
+  <form method="get">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary view-button">Переглянути</button>
+  </form>
+
+  <h2>Нотатки</h2>
+  {% for note in notes %}
+    <div class="note">
+      <p>{{ note.note }}</p>
+      <p>Теги: {{ note.tags.all|join:", " }}</p>
+      <a href="{% url 'notes:delete_note' note.id %}" class="btn btn-danger delete-button">Видалити</a>
+      <a href="{% url 'notes:edit_note' note.id %}" class="btn btn-primary edit-button">Змінити</a>
+    </div>
+  {% empty %}
+    <p>Нотатки з вибраними тегами не знайдено.</p>
+  {% endfor %}
+
+  
+
+  <script>
+    function goBack() {
+        window.location.href = '{% url 'notes:notes' %}';
+    }
+</script>
+
+  
+{% endblock %}
