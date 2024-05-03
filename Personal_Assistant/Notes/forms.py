@@ -21,11 +21,9 @@ class NoteForm(forms.ModelForm):
 
     def save(self, commit=True):
         note = super().save(commit=False)
-        #note.user = self.user
         if commit:
             note.save()
             self.save_m2m()
-        # Обробка тегів
         tags_str = self.cleaned_data['tags']
         tags = [tag.strip() for tag in tags_str.split(',') if tag.strip()]
         for tag_name in tags:

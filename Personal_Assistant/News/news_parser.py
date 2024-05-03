@@ -42,8 +42,8 @@ def parse_news():
 
             return news_list
         else:
-            print("Container title not found.")
+            print("Назва контейнера не знайдена.")
             return None
     else:
-        print("Failed to retrieve news.")
+        print("Не вдалося отримати новини.")
         return None
