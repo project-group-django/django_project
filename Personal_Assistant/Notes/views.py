@@ -86,6 +86,8 @@ def tag_delete_success(request, tag_id):
 
 def tag_edit_success(request, tag_id):
     return render(request, 'Notesapp/tag_edit_success.html')
+
+
 @login_required
 def edit_tag(request, tag_id):
     try:

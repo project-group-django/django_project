@@ -27,7 +27,7 @@ class NoteForm(forms.ModelForm):
         tags_str = self.cleaned_data['tags']
         tags = [tag.strip() for tag in tags_str.split(',') if tag.strip()]
         for tag_name in tags:
-            tag, _ = Tag.objects.get_or_create(name=tag_name)
+            tag, _ = Tag.objects.get_or_create(name=tag_name, user=self.instance.user)  
             note.tags.add(tag)
         return note
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Project</title>
+    <title>Контакти</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -246,105 +246,28 @@
 
   </div>
 
-    <h1>Проєкт з використанням Django</h1>
+    <h1>Проект з використанням Django</h1>
     <h2>Персональний помічник</h2>
     
     <div id="centered-buttons">
       {% if user.is_authenticated %}
-      <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
+        <a href="{% url 'index' %}"><button>Головна сторінка</button></a>
+        <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
         <button>Файловий Менеджер</button>
-        <button onclick="location.href='/contacts'" class="btn btn-primary">Контакти</button>
-        <a href="{% url 'news' %}"><button>Новини</button></a>
-        <a href="{% url 'weather' %}"><button>Погода</button></a>
-        <a href="{% url 'money' %}"><button>Курс валют</button></a>
-      {% else %}
         <a href="{% url 'news' %}"><button>Новини</button></a>
         <a href="{% url 'weather' %}"><button>Погода</button></a>
         <a href="{% url 'money' %}"><button>Курс валют</button></a>
       {% endif %}
     </div>
+    <div id="centered-buttons">
+      <a href="{% url 'contacts:contact_list' %}"><button>Список контактів</button></a>
+      <a href="{% url 'contacts:contact_create' %}"><button>Додати контакт</button></a>
+      <a href="{% url 'contacts:contact_search' %}"><button>Знайти контакт</button></a>
+      <a href="{% url 'contacts:upcoming_birthdays' %}"><button>Дні народження</button></a>
+    </div>
 
-    <h3>Проект Підготували</h3>
-    <input type="radio" id="s-1" name="slider-control" checked="checked">
-    <input type="radio" id="s-2" name="slider-control">
-    <input type="radio" id="s-3" name="slider-control">
-    <input type="radio" id="s-4" name="slider-control">
-    <input type="radio" id="s-5" name="slider-control">
-
-    <div class="js-slider">
-
-    <figure class="js-slider_item img-1">
-        <div class="js-slider_img">
-        <img class="c-img-h-full" src="фото" alt=""></div>
-        <figcaption class="wo-caption">
-        <h3 class="wo-h3">Артем Developer</h3>
-        <ul class="wo-credit">
-        </figcaption>
-    </figure>
-
-    <figure class="js-slider_item img-2">
-        <div class="js-slider_img">
-        <img class="c-img-h-full" src="фото" alt=""></div>
-        <figcaption class="wo-caption">
-        <h3 class="wo-h3">Борис Кучин Developer</h3>
-        <ul class="wo-credit">
-        </figcaption>
-    </figure>
-
-    <figure class="js-slider_item img-3">
-        <div class="js-slider_img">
-        <img class="c-img-h-full" src="фото" alt=""></div>
-        <figcaption class="wo-caption">
-        <h3 class="wo-h3">Вадим Рабцун Scrum Master</h3>
-        <ul class="wo-credit">
-        </figcaption>
-    </figure>
-
-    <figure class="js-slider_item img-4">
-            <div class="js-slider_img">
-            <img class="c-img-h-full" src="фото" alt=""></div>
-            <figcaption class="wo-caption">
-            <h3 class="wo-h3">Володимир Різун Developer</h3>
-            <ul class="wo-credit">
-            </figcaption>
-    </figure>
     
-    <figure class="js-slider_item img-5">
-            <div class="js-slider_img">
-            <img class="c-img-h-full" src="фото" alt=""></div>
-            <figcaption class="wo-caption">
-            <h3 class="wo-h3">Богдан Шевченко Team Lead</h3>
-            <ul class="wo-credit">
-            </figcaption>
-    </figure>
-        
 
-    <div class="js-slider_nav">
-        <label class="js-slider_nav_item s-nav-1 prev" for="s-5"></label>
-        <label class="js-slider_nav_item s-nav-1 next" for="s-2"></label>
-        
-        <label class="js-slider_nav_item s-nav-2 prev" for="s-1"></label>
-        <label class="js-slider_nav_item s-nav-2 next" for="s-3"></label>
-        
-        <label class="js-slider_nav_item s-nav-3 prev" for="s-2"></label>
-        <label class="js-slider_nav_item s-nav-3 next" for="s-4"></label>
-        
-        <label class="js-slider_nav_item s-nav-4 prev" for="s-3"></label>
-        <label class="js-slider_nav_item s-nav-4 next" for="s-5"></label>
-        
-        <label class="js-slider_nav_item s-nav-5 prev" for="s-4"></label>
-        <label class="js-slider_nav_item s-nav-5 next" for="s-1"></label>
-        
-
-    </div>
-    <div class="js-slider_indicator">
-        <div class="js-slider-indi indi-1"></div>
-        <div class="js-slider-indi indi-2"></div>
-        <div class="js-slider-indi indi-3"></div>
-        <div class="js-slider-indi indi-4"></div>
-        <div class="js-slider-indi indi-5"></div>
-    </div>
-    </div>
         
 
 </body>

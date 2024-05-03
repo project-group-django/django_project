@@ -1,0 +1,11 @@
+{% extends 'contacts/base.html' %}
+
+{% block content %}
+  <h2>Видалити контакт</h2>
+  <p>Ви дійсно хочете видалити контакт "{{ contact.name }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Підтвердити</button>
+    <a href="{% url 'contacts:contact_list' %}">Відмінити</a>
+  </form>
+{% endblock %}
