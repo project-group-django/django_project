@@ -10,7 +10,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-    # resizing images
     def save(self, *args, **kwargs):
         super().save()
 

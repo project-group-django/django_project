@@ -86,7 +86,7 @@
         <a href="{% url 'users:logout' %}" title="Username: {{ user }}"><button>Вийти</button></a>
         <a href="{% url 'users:profile' %}" title="Username: {{ user }}"><button>Профіль</button></a>
         {% else %}
-        <a href="{% url 'users:signup' %}"><button>Регестрація</button></a>
+        <a href="{% url 'users:signup' %}"><button>Реєстрація</button></a>
         <a href="{% url 'users:login' %}"><button>Вхід</button></a>
         {% endif %}
     </div>
@@ -96,7 +96,7 @@
         <a href="{% url 'index' %}"><button>Головна сторінка</button></a>
         <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
         <button>Файловий Менеджер</button>
-        <button>Контакти</button>
+        <button onclick="location.href='/contacts'" class="btn btn-primary">Контакти</button>
         <a href="{% url 'weather' %}"><button>Новини</button></a>
         <a href="{% url 'money' %}"><button>Курс валют</button></a>
         {% else %}
