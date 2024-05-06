@@ -1,6 +1,6 @@
-from pymongo import MongoClient
+rom django.contrib import admin
+from django.urls import path
 
-def get_mongodb():
-    client = MongoClient('mongodb://localhost') 
-    db = client.hw
-    return db
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
