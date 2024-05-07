@@ -251,8 +251,8 @@
     
     <div id="centered-buttons">
       {% if user.is_authenticated %}
-      <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
-        <button>Файловий Менеджер</button>
+        <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
+        <button onclick="location.href='/filemanager/files'" class="btn btn-primary">Файловий Менеджер</button>
         <button onclick="location.href='/contacts'" class="btn btn-primary">Контакти</button>
         <a href="{% url 'news' %}"><button>Новини</button></a>
         <a href="{% url 'weather' %}"><button>Погода</button></a>

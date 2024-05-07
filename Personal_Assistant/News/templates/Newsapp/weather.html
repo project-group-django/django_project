@@ -95,9 +95,9 @@
         {% if user.is_authenticated %}
         <a href="{% url 'index' %}"><button>Головна сторінка</button></a>
         <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
-        <button>Файловий Менеджер</button>
+        <button onclick="location.href='/filemanager/files'" class="btn btn-primary">Файловий Менеджер</button>
         <button onclick="location.href='/contacts'" class="btn btn-primary">Контакти</button>
-        <a href="{% url 'weather' %}"><button>Новини</button></a>
+        <a href="{% url 'news' %}"><button>Новини</button></a>
         <a href="{% url 'money' %}"><button>Курс валют</button></a>
         {% else %}
         <a href="{% url 'index' %}"><button>Головна сторінка</button></a>

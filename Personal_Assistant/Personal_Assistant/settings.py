@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'News',
     'Notes',
     'contacts',
+    'filemanager'
 ]
 
 MIDDLEWARE = [

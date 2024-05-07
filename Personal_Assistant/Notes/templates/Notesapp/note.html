@@ -68,7 +68,7 @@
 
     <div id="centered-buttons">
         <a href="{% url 'index' %}"><button>Головна сторінка</button></a>
-        <button>Файловий Менеджер</button>
+        <button onclick="location.href='/filemanager/files'" class="btn btn-primary">Файловий Менеджер</button>
         <button onclick="location.href='/contacts'" class="btn btn-primary">Контакти</button>
         <a href="{% url 'news' %}"><button>Новини</button></a>
         <a href="{% url 'weather' %}"><button>Погода</button></a>

@@ -25,6 +25,32 @@ def parse_news():
             
             for news_element in news_elements:
                 date_time_str = news_element.find('div', class_='article_author').text.strip()
+                author_publication_split = date_time_str.split('—')
+                if len(author_publication_split) > 1:
+                    author = author_publication_split[-1].strip()
+                    publication = author_publication_split[-2].strip()
+                else:
+                    author = None
+                    publication = None
+
+                if author:
+                    if ',' in author:
+                        author_parts = [part.strip() for part in author.split(',')]
+                        author_name_parts = []
+                        for index, part in enumerate(author_parts):
+                            if len(part) <= 7:
+                                author_name_parts.append(part)
+                            else:
+                                if len(part) <= 2 and part[:-1].isdigit() and index < len(author_parts) - 1:
+                                    author_name_parts.append(part)
+                                else:
+                                    author_name_parts.append(' '.join(word.capitalize() for word in part.split()))
+                        author_name = ', '.join(author_name_parts)
+                    else:
+                        author_name = ' '.join(word.capitalize() for word in author.split())
+                else:
+                    author_name = None
+
                 match = re.search(r'(\d+) (\w+) (\d+),', date_time_str)
                 day, month_str, year = match.groups()
                 month = months[month_str.lower()]
@@ -36,10 +62,9 @@ def parse_news():
                     image = news_element.find('img')['src']
                     title = news_element.find('h3').text.strip()
                     content = news_element.find('div', class_='article_subheader').text.strip()
-                    author = re.search(r'— ([^—]+) —', date_time_str).group(1).strip()
                     link = news_element.find('a')['href']
-                    news_list.append({'image': image, 'title': title, 'content': content, 'author': author, 'link': link})
-
+                    news_list.append({'image': image, 'title': title, 'content': content, 'author': author_name, 'publication': publication, 'link': link})
+                
             return news_list
         else:
             print("Назва контейнера не знайдена.")
@@ -47,3 +72,5 @@ def parse_news():
     else:
         print("Не вдалося отримати новини.")
         return None
+
+parse_news()
