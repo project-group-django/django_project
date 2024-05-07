@@ -1,0 +1,9 @@
+{% extends 'Notesapp/base.html' %}
+{% block content %}
+    <h1>Видалення тегу</h1>
+    <p>Ви впевнені, що хочете видалити цей тег?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Підтвердити видалення</button>
+    </form>
+{% endblock %}
