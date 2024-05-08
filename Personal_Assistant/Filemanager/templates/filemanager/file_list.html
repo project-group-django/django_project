@@ -28,6 +28,7 @@
         {% for file in files %}
         <li>
             {{ file.name }}
+            <a href="{{ file.file.url }}">Скачати</a>
             <a href="{% url 'delete_file' file.id %}">Видалити</a>
         </li>
         {% endfor %}
