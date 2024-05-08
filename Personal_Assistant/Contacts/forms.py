@@ -4,6 +4,7 @@ import re
 from django.core.exceptions import ValidationError
 
 class ContactForm(forms.ModelForm):
+    birthday = forms.DateField(widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'}))
     class Meta:
         model = Contact
         fields = ['name', 'address', 'phone', 'email', 'birthday']
