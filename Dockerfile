@@ -9,7 +9,8 @@ WORKDIR /app
 
 # Встановлення залежностей за допомогою pip
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apk add --no-cache postgresql-dev gcc musl-dev \
+    && pip install --no-cache-dir -r requirements.txt
 
 # Stage 2: Runtime stage
 FROM python:3-alpine AS runner
@@ -38,4 +39,3 @@ EXPOSE ${PORT}
 
 # Команда для запуску gunicorn сервера
 CMD ["gunicorn", "--bind", ":${PORT}", "--workers", "2", "Personal_Assistant.wsgi"]
-    
