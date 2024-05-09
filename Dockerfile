@@ -38,3 +38,4 @@ EXPOSE ${PORT}
 
 # Команда для запуску gunicorn сервера
 CMD ["gunicorn", "--bind", ":${PORT}", "--workers", "2", "Personal_Assistant.wsgi"]
+    
