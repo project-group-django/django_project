@@ -1,0 +1,20 @@
+@relation bank_customers
+
+@attribute age numeric
+@attribute job {manager, technician, student, unemployed}
+@attribute marital_status {married, single, divorced}
+@attribute balance numeric
+@attribute loan_status {yes, no}
+
+@data
+35, manager, married, 5000, no
+28, student, single, 1000, yes
+45, technician, divorced, 30000, no
+40, manager, married, 15000, no
+22, student, single, 500, yes
+55, technician, married, 25000, no
+33, manager, single, 7000, no
+50, unemployed, divorced, 2000, yes
+38, manager, married, 18000, no
+29, student, single, 300, yes
+42, technician, married, 22000, no

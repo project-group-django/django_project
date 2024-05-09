@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новини</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #edf5e1;
+            margin: 0;
+            padding: 0;
+            background-color: #31325e;
+            position: relative; 
+        }
+        
+        h1,h2,h3 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        ul {
+            list-style-type: none; /* Прибирає маркери у списку */
+            padding: 0; /* Прибирає відступи для кращого вигляду */
+        }
+        
+        .news-item {
+            width: 600px; /* Розмір контейнера новини */
+            margin: 0 auto; /* Центрування контейнера */
+            padding-bottom: 30px; /* Відстань між новинами */
+        }
+
+        .news-image {
+            width: 100%; /* Заповнення всього контейнера */
+            height: auto; /* Автоматична регулювання висоти */
+            display: block; /* Відображення зображення як блоку */
+        }
+
+        .news-content {
+            text-align: left; /* Вирівнювання тексту вліво */
+            margin-top: 10px; /* Відстань між зображенням і текстом */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f64c72;
+            color: #edf5e1;
+            transition: background-color 0.3s ease; 
+        }
+        #registration-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        #centered-buttons {
+            text-align: center;
+            margin-top: 50px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="centered-buttons">
+        {% if user.is_authenticated %}
+        <a href="{% url 'index' %}"><button>Головна сторінка</button></a>
+        <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
+        <button onclick="location.href='/filemanager/files'" class="btn btn-primary">Файловий Менеджер</button>
+        <button onclick="location.href='/contacts'" class="btn btn-primary">Контакти</button>
+        <a href="{% url 'weather' %}"><button>Погода</button></a>
+        <a href="{% url 'money' %}"><button>Курс валют</button></a>
+        {% else %}
+        <a href="{% url 'index' %}"><button>Головна сторінка</button></a>
+        <a href="{% url 'weather' %}"><button>Погода</button></a>
+        <a href="{% url 'money' %}"><button>Курс валют</button></a>
+        {% endif %}
+    </div>
+    <h1>Останні новини</h1>
+    <ul>
+    {% for single_news in news %}
+        <li class="news-item">
+            <img class="news-image" src="{{ single_news.image }}" alt="{{ single_news.title }}">
+            <h2>{{ single_news.title }}</h2>
+            <div class="news-content">
+                <p>{{ single_news.content }}</p>
+                {% if single_news.author %}
+                    {% if '—' in single_news.author %}
+                        <p>Автор та джерело: {{ single_news.author }}</p>
+                    {% else %}
+                        <p>Автор: {{ single_news.author }}</p>
+                    {% endif %}
+                {% endif %}
+                <a href="{{ single_news.link }}"><button>Читати більше</button></a>
+            </div>
+            
+
+            <div id="registration-buttons">
+                {% if user.is_authenticated %}
+                <a href="{% url 'users:logout' %}" class="btn btn-primary" title="Username: {{ user }}"><button>Вихід</button></a>
+                <a href="{% url 'users:profile' %}" class="btn btn-primary" title="Username: {{ user }}"><button>Профіль</button></a>
+            {% else %}
+                <a href="{% url 'users:signup' %}" class="btn btn-primary"><button>Реєстрація</button></a>
+                <a href="{% url 'users:login' %}" class="btn btn-primary"><button>Вхід</button></a>
+            {% endif %}
+          
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>

@@ -1,9 +1,0 @@
-{% extends 'Notesapp/base.html' %}
-{% block content %}
-    <h1>Редагування тегу</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Зберегти зміни</button>
-    </form>
-{% endblock %}

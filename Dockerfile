@@ -1,23 +1,40 @@
-# Використовуємо базовий образ PostgreSQL
-FROM postgres AS postgresql
+# Stage 1: Build stage
+FROM python:3-alpine AS builder
 
-# Встановлюємо пароль для користувача postgres
-ENV POSTGRES_PASSWORD=567234
+# Встановлення змінних середовища
+ENV PYTHONUNBUFFERED 1
 
-# Вказуємо порт, на якому PostgreSQL буде слухати підключення
-EXPOSE 5432
-
-# ---------------------
-
-# Використовуємо базовий образ Python для створення віртуального середовища та іншого
-FROM python:3.12-alpine AS builder
-
-# Копіюємо файли додатку
-COPY . /app
-
-# Встановлюємо залежності
+# Встановлення робочого каталогу
 WORKDIR /app
+
+# Встановлення залежностей за допомогою pip
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Запускаємо додаток
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Stage 2: Runtime stage
+FROM python:3-alpine AS runner
+
+# Встановлення змінних середовища
+ENV PYTHONUNBUFFERED 1
+
+# Встановлення робочого каталогу
+WORKDIR /app
+
+# Копіювання віртуального середовища та додатку з попереднього етапу
+COPY --from=builder /app/venv /app/venv
+COPY . .
+
+# Встановлення змінних середовища
+ENV PATH="/app/venv/bin:$PATH"
+
+# Встановлення змінних середовища Django
+ENV DJANGO_SETTINGS_MODULE=Personal_Assistant.settings
+
+# Встановлення порту
+ENV PORT=8000
+
+# Відкриття порту для доступу до додатку
+EXPOSE ${PORT}
+
+# Команда для запуску gunicorn сервера
+CMD ["gunicorn", "--bind", ":${PORT}", "--workers", "2", "Personal_Assistant.wsgi"]

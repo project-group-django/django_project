@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Погода</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #edf5e1;
+            margin: 0 0 0 0;
+            padding: 0;
+            background-color: #31325e;
+            position: relative; 
+        }
+        
+        h1,h2,h3 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f64c72;
+            color: #edf5e1;
+            transition: background-color 0.3s ease; 
+        }
+        
+        button:hover {
+            background-color: #443d67;
+        }
+        
+        #registration-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        #centered-buttons {
+            text-align: center;
+            margin-top: 50px; 
+        }
+
+        .centered-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            background-color: #31325e;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: auto;
+            max-width: 60%;
+        }
+
+        
+        .weather-widget {
+            flex: 0 0 300px;
+            margin: 50px 300px 1px 300px;
+        }
+        .map-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .map-container iframe {
+            border: 1px solid black;
+            width: 100%;
+            height: 100%;
+        }
+        #Map_enobWpbLgMTomKbpKKMMjoWocojh {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="registration-buttons">
+        {% if user.is_authenticated %}
+        <a href="{% url 'users:logout' %}" title="Username: {{ user }}"><button>Вийти</button></a>
+        <a href="{% url 'users:profile' %}" title="Username: {{ user }}"><button>Профіль</button></a>
+        {% else %}
+        <a href="{% url 'users:signup' %}"><button>Реєстрація</button></a>
+        <a href="{% url 'users:login' %}"><button>Вхід</button></a>
+        {% endif %}
+    </div>
+
+    <div id="centered-buttons">
+        {% if user.is_authenticated %}
+        <a href="{% url 'index' %}"><button>Головна сторінка</button></a>
+        <button onclick="location.href='/notes'" class="btn btn-primary">Нотатки</button>
+        <button onclick="location.href='/filemanager/files'" class="btn btn-primary">Файловий Менеджер</button>
+        <button onclick="location.href='/contacts'" class="btn btn-primary">Контакти</button>
+        <a href="{% url 'news' %}"><button>Новини</button></a>
+        <a href="{% url 'money' %}"><button>Курс валют</button></a>
+        {% else %}
+        <a href="{% url 'index' %}"><button>Головна сторінка</button></a>
+        <a href="{% url 'weather' %}"><button>Новини</button></a>
+        <a href="{% url 'money' %}"><button>Курс валют</button></a>
+        {% endif %}
+    </div>
+
+    <div class="weather-widget">
+        <div id="ww_fe8013b4c4636" v='1.3' loc='auto' a='{"t":"responsive","lang":"uk","ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"#C2185B","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#FFFFFF","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FFFFFF","cl_odd":"#0000000a"}'><a href="https://weatherwidget.org/uk/" id="ww_fe8013b4c4636_u" target="_blank">Безкоштовний інформер погоди на сайт</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_fe8013b4c4636"></script>
+    </div>
+    <div class="centered-div">
+        <div class="map-container">
+            <iframe src="https://mapa.tutiempo.net/en/#14.13658;-21.22559;4" scrolling="no" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true" style="border:1px solid black; padding:0; margin:0; width:100%; height:100%;"></iframe>
+        </div>
+    </div>
+    
+    <div id="Map_enobWpbLgMTomKbpKKMMjoWocojh" style="max-width: 450px;  margin: 20px auto 0;">
+    <script src="https://www.tutiempo.net/s-widget/fm/enobWpbLgMTomKbpKKMMjoWocojh.js"></script>
+</body>
+</html>
+
+

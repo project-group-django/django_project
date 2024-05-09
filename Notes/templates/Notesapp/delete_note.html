@@ -1,0 +1,17 @@
+{% extends 'Notesapp/base.html' %}
+
+{% block content %}
+  <h2>Видалити нотатку</h2>
+  <p>Ви впевнені, що хочете видалити нотатку "{{ note.note }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Так, видалити</button>
+    <button onclick="goBack()" class="btn btn-secondary">Скасувати</button>
+  </form> 
+
+  <script>
+    function goBack() {
+      window.location.href = '{% url 'notes:note_list' %}';
+    }
+  </script>
+{% endblock %}
