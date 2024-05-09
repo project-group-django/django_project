@@ -1,10 +1,7 @@
 FROM python:3-alpine AS builder
  
 WORKDIR /app
-
-
-RUN apk add --no-cache postgresql-dev gcc python3-dev musl-dev
-
+ 
 RUN python3 -m venv venv
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
