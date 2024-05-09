@@ -1,31 +1,27 @@
-# Stage 1: Build stage
-FROM python:3-alpine AS builder
+# Етап збирання
+FROM python:3.9-slim AS builder
 
-# Встановлення змінних середовища
-ENV PYTHONUNBUFFERED 1
+# Встановлення необхідних пакетів
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Встановлення робочого каталогу
-WORKDIR /app
+# Створення та активація віртуального середовища
+RUN python -m venv /app/venv
+ENV PATH="/app/venv/bin:$PATH"
 
-# Встановлення залежностей за допомогою pip
+# Копіювання файлив залежностей та встановлення їх
 COPY requirements.txt .
-# Встановлення залежностей за допомогою pip та системних пакетів
-RUN apk add --no-cache postgresql-dev gcc musl-dev linux-headers \
-    && pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Додаткові кроки збирання, якщо потрібно
 
-# Stage 2: Runtime stage
-FROM python:3-alpine AS runner
-
-# Встановлення змінних середовища
-ENV PYTHONUNBUFFERED 1
-
-# Встановлення робочого каталогу
-WORKDIR /app
+# Етап запуску
+FROM python:3.9-slim AS runner
 
 # Копіювання віртуального середовища та додатку з попереднього етапу
 COPY --from=builder /app/venv /app/venv
-COPY . .
+COPY . /app
 
 # Встановлення змінних середовища
 ENV PATH="/app/venv/bin:$PATH"
