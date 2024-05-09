@@ -9,6 +9,9 @@ COPY requirements.txt .
 # Встановлюємо залежності для компіляції деяких Python-пакетів
 RUN apk update && apk add --no-cache gcc musl-dev libffi-dev openssl-dev
 
+RUN apk update && \
+    apk add --no-cache postgresql-dev
+
 # Створюємо віртуальне середовище та встановлюємо залежності
 RUN python -m venv venv
 ENV VIRTUAL_ENV=/app/venv
