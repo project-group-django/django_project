@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-h0$uf4*k^c72t6v5(2yun4%3f5^84523b71i9)j$wi&3(n3=pj
 DEBUG = True
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]").split(",")
+ALLOWED_HOSTS = ['personal-assistant-web-group-10-60ac64ed.koyeb.app']
 
 
 # Application definition
