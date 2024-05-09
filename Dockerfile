@@ -13,7 +13,8 @@ RUN apk update && apk add --no-cache gcc musl-dev libffi-dev openssl-dev
 RUN python -m venv venv
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt --verbose
+
 
 # Використовуємо `EXPOSE`, щоб показати, на якому порту запускатиметься додаток
 EXPOSE 8000
