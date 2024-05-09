@@ -1,26 +1,7 @@
-FROM python:3.10-alpine AS builder
+FROM postgres
 
-
-WORKDIR /app
-
-# Копіюємо файл відразу
-COPY requirements.txt .
-
-# Встановлюємо залежності для компіляції деяких Python-пакетів
-RUN apk update && apk add --no-cache gcc musl-dev libffi-dev openssl-dev
-
-RUN apk update && \
-    apk add --no-cache postgresql-dev
-
-# Створюємо віртуальне середовище та встановлюємо залежності
-RUN python -m venv venv
-ENV VIRTUAL_ENV=/app/venv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --upgrade pip && pip install -r requirements.txt --verbose
-
-
-# Використовуємо `EXPOSE`, щоб показати, на якому порту запускатиметься додаток
-EXPOSE 8000
+ENV POSTGRES_PASSWORD=567234
+EXPOSE 5432
 
 # Команда запуску сервера
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
