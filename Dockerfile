@@ -9,8 +9,10 @@ WORKDIR /app
 
 # Встановлення залежностей за допомогою pip
 COPY requirements.txt .
-RUN apk add --no-cache postgresql-dev gcc musl-dev \
+# Встановлення залежностей за допомогою pip та системних пакетів
+RUN apk add --no-cache postgresql-dev gcc musl-dev linux-headers \
     && pip install --no-cache-dir -r requirements.txt
+
 
 # Stage 2: Runtime stage
 FROM python:3-alpine AS runner
